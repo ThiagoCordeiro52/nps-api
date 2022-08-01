@@ -1,13 +1,15 @@
-import express from "express";
+import "reflect-metadata";
+import "./database";
 
-const app = express();
+import { AppDataSource } from "./database";
+import { app } from "./app";
 
-app.get("/", (request, response) => {
-  return response.json({ message: "Hello World" });
-});
-
-app.post("/", (request, response) => {
-  return response.json({ message: "Os dados foram salvos com sucesso!"})
-});
-
-app.listen(3333, () => console.log("Server is running!"));
+AppDataSource.initialize()
+  .then(() => {
+    const server = app.listen(3333, () => {
+      return console.log("Server started on port 3333! 🏆");
+    });
+  })
+  .catch((err) => {
+    console.error("Error during Data Source initialization");
+  });
