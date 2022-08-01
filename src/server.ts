@@ -1,5 +1,4 @@
 import "reflect-metadata";
-import "./database";
 
 import { AppDataSource } from "./database";
 import { app } from "./app";
