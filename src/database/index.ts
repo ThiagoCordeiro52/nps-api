@@ -6,11 +6,3 @@ export const AppDataSource = new DataSource({
   database: "./src/database/database.sqlite",
   migrations: [CreateUsers1659294167016]
 });
-
-AppDataSource.initialize()
-  .then(() => {
-    console.log("Data Source has been initialized!");
-  })
-  .catch((err) => {
-    console.error("Error during Data Source initialization");
-  });
