@@ -1,12 +1,11 @@
 import { Request, Response } from "express";
-import { AppDataSource } from "../database";
-import { User } from "../models/User";
+import { UserRepository } from "../repositories/UsersRespository";
 
 class UserController {
   async create(request: Request, response: Response) {
     const { name, email } = request.body;
 
-    const usersRepository = AppDataSource.getRepository(User);
+    const usersRepository = UserRepository;
 
     const userAlreadyExists = await usersRepository.findOneBy({
       email,
